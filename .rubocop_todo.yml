@@ -25,22 +25,3 @@ Style/ClassAndModuleChildren:
 Style/FileName:
   Exclude:
     - 'Gemfile'
-
-# Offense count: 12
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: when_needed, always, never
-Style/FrozenStringLiteralComment:
-  Exclude:
-    - 'Gemfile'
-    - 'Rakefile'
-    - 'app/channels/application_cable/channel.rb'
-    - 'app/channels/application_cable/connection.rb'
-    - 'app/controllers/application_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/jobs/application_job.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/application_record.rb'
-    - 'config.ru'
-    - 'test/application_system_test_case.rb'
-    - 'test/test_helper.rb'
