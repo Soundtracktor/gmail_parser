@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 module Parsers
-	class Gmail
-		include ActiveModel::Model
+  class Gmail
+    include ActiveModel::Model
 
-		attr_accessor :search_id
+    attr_accessor :search_id
 
-		def parse
-			p search
-		end
+    def parse
+      p search
+    end
 
-		private
+    private
 
-		def search
-			@search ||= Search.find(search_id)
-		end
-	end
+    def search
+      @search ||= Search.find(search_id)
+    end
+  end
 end

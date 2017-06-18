@@ -23,18 +23,18 @@ RSpec.describe GmailParseJob, type: :job do
   end
 
   it 'executes perform' do
-  	gmail_mock = instance_double(Parsers::Gmail)
+    gmail_mock = instance_double(Parsers::Gmail)
 
-  	allow(Parsers::Gmail).to receive(:new)	
-  		.and_return(gmail_mock)
+    allow(Parsers::Gmail).to receive(:new)
+      .and_return(gmail_mock)
 
-  	allow(gmail_mock).to receive(:parse)
-  		.and_return(true)
+    allow(gmail_mock).to receive(:parse)
+      .and_return(true)
 
     perform_enqueued_jobs { job }
 
-    expect(Parsers::Gmail).to have_received(:new)	
-    	.with(search_id: search.id)
+    expect(Parsers::Gmail).to have_received(:new)
+      .with(search_id: search.id)
 
     expect(gmail_mock).to have_received(:parse)
   end
