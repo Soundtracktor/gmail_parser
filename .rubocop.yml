@@ -1,0 +1,36 @@
+inherit_from: .rubocop_todo.yml
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.4
+  Severity: error
+
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+Style/Documentation:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/MultilineMethodCallIndentation:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Rails/EnumUniqueness:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
