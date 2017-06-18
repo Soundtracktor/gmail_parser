@@ -1,0 +1,70 @@
+# frozen_string_literal: true
+require 'rails_helper'
+
+RSpec.describe Search, type: :model do
+  context 'responds_to' do
+    %i(
+      test
+    ).each do |key|
+      it { is_expected.to respond_to(key) }
+    end
+  end
+
+  context 'delegation' do
+    it { is_expected.to delegate_method(:test).to(:test) }
+  end
+
+  context 'enums' do
+    it 'should have correct track types' do
+      expect(described_class::TrackTypes).to eq(%w(a b c))
+    end
+
+    it do
+      should define_enum_for(:track_type).with(
+        described_class.track_types.keys
+      )
+    end
+  end
+
+  context 'relationships' do
+    %i(
+      
+    ).each do |key|
+      it { is_expected.to belong_to(key) }
+    end
+
+    %i(
+      
+    ).each do |key|
+      it { is_expected.to have_many(key).dependent(:destroy) }
+    end
+  end
+
+  context 'validations' do
+    %i(
+      test
+    ).each do |key|
+      it { is_expected.to validate_presence_of(key) }
+    end
+
+    %i(
+     name uuid
+   ).each do |key|
+     it { is_expected.to validate_uniqueness_of(key).case_insensitive }
+   end
+  end
+
+  context 'callbacks' do
+  end
+
+  context 'scopes' do
+  end
+
+  context 'concerns' do
+    it { should be_kind_of(AncestryCache) }
+  end
+
+  context 'methods' do
+
+  end
+end
