@@ -23,7 +23,9 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '~> 2.13'
+  gem 'chromedriver-helper'
   gem 'factory_girl_rails'
+  gem 'launchy'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'selenium-webdriver'
