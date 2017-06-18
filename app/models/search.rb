@@ -26,6 +26,8 @@ class Search < ApplicationRecord
   end
 
   def key
-    ActiveSupport::KeyGenerator.new('password').generate_key(salt, 32)
+    ActiveSupport::KeyGenerator.new(
+    	Rails.application.secrets.secret_key_base
+    ).generate_key(salt, 32)
   end
 end
