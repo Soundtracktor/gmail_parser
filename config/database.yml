@@ -1,0 +1,13 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  host: localhost
+
+development:
+  <<: *default
+  database: gmail_parser_development
+
+test:
+  <<: *default
+  database: gmail_parser_test
