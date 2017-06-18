@@ -10,6 +10,7 @@ class SearchesController < ApplicationController
 
     if @search.save
       redirect_to search_path(id: @search.token), notice: 'Search was successfully created.'
+      GmailParseJob.perform_later(search_id: @search.id)
     else
       render :new
     end

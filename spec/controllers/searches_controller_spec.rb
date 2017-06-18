@@ -14,6 +14,11 @@ RSpec.describe SearchesController, type: :controller do
   end
 
   describe 'GET #create' do
+    before do
+      allow(GmailParseJob).to receive(:perform_later)
+        .and_return(true)
+    end
+
     subject do
       get(
         :create,
@@ -48,6 +53,14 @@ RSpec.describe SearchesController, type: :controller do
       subject
       search = Search.last
       expect(response).to redirect_to(search_path(id: search.token))
+    end
+
+    it 'should call GmailParseJob' do
+      subject
+
+      search = Search.last
+      expect(GmailParseJob).to have_received(:perform_later)
+        .with(search_id: search.id)
     end
   end
 
