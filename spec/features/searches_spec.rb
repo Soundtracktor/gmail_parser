@@ -29,7 +29,6 @@ RSpec.feature 'Searches', type: :feature do
       expect(page).to have_text('to 2017-06-18')
       expect(current_path).to eq("/searches/#{Search.last.token}")
 
-      # Parse Job
       expect(page.find('th#search-count').text).to have_text('2')
       expect(page).to have_text('Lorem Dupsi')
       expect(page).to have_text('Lirum Larum')
