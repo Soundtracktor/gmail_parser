@@ -2,23 +2,14 @@
 
 module Parsers
   class Gmail
-    require 'watir'
     include ActiveModel::Model
 
     attr_accessor :search_id
 
     def parse
-      browser.goto 'gmail.com'
-      browser.text_field(:id, 'identifierId').set search.email
-      browser.div(:id, 'identifierNext').click
-
-      browser.text_field(:type, 'password').set search.password
-      browser.div(:id, 'passwordNext').click
-
-      browser.text_field(:name, 'q').send_keys search_term, :return
-
-      # page = Nokogiri::HTML.parse(browser.html)
-      browser.close
+      emails.each do |email|
+        search.results.create!(content: email)
+      end
     end
 
     private
@@ -27,20 +18,22 @@ module Parsers
       @search ||= Search.find(search_id)
     end
 
-    def browser
-      @browser ||= Watir::Browser.new :chrome
+    def html
+      @html ||= Parsers::Browsers::Gmail.new(search: search).html
     end
 
-    def search_term
-      "after:#{from_date} before:#{to_date_plus_one}"
+    def emails
+      @emails ||= fetch_emails
     end
 
-    def from_date
-      search.from_date.strftime('%Y-%m-%d')
+    def fetch_emails
+      doc.search('div.Cp tbody tr').map do |tr|
+        tr.search('td')[3].search('div')[0].text
+      end
     end
 
-    def to_date_plus_one
-      (search.to_date + 1.day).strftime('%Y-%m-%d')
+    def doc
+      @doc ||= Nokogiri::HTML.parse(html)
     end
   end
 end

@@ -10,9 +10,11 @@ end
 
 gem 'coffee-rails', '~> 4.2'
 gem 'dotenv-rails'
+gem 'nokogiri'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.1'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'redis'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'

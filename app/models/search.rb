@@ -3,6 +3,7 @@
 class Search < ApplicationRecord
   has_secure_token
   validates :from_date, :to_date, :email, :encrypted_password, presence: true
+  has_many :results, dependent: :destroy
 
   def password=(value)
     return unless value
