@@ -1,1 +1,28 @@
-<h4><%= @search.email %> from <%= @search.from_date %> to <%= @search.to_date %></h4>
+<h4><%= @view_presenter.title %></h4>
+
+<%= search_form_for @view_presenter.query, url: search_path(id: @view_presenter.token) do |f| %>
+
+  <div class="form-group">
+  	<%= f.label :content_cont %>
+  	<%= f.search_field :content_cont, class: 'form-control' %>
+  </div>
+
+  <%= f.submit "Search", class: "btn btn-default" %>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+  	<tr>
+  		<th id="search-count">Count: <%= @view_presenter.count %></th>
+  	</tr>
+  </thead>
+  <tbody>
+  	<% @view_presenter.results.each do |result| %>
+  	<tr>
+  		<td><%= result.content %></td>
+  	</tr>
+  	<% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back", "/" %>

@@ -18,6 +18,7 @@ RSpec.describe Search, type: :model do
     end
 
     %i[
+      results
     ].each do |key|
       it { is_expected.to have_many(key).dependent(:destroy) }
     end

@@ -17,7 +17,10 @@ class SearchesController < ApplicationController
   end
 
   def show
-    @search = Search.find_by(token: params[:id])
+    @view_presenter = ViewPresenters::Searches::Show.new(
+      token: params[:id],
+      q: params[:q]
+    )
   end
 
   private

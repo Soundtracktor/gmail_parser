@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618190045) do
+ActiveRecord::Schema.define(version: 20170620224603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "results", force: :cascade do |t|
+    t.bigint "search_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content"], name: "index_results_on_content"
+    t.index ["search_id"], name: "index_results_on_search_id"
+  end
 
   create_table "searches", force: :cascade do |t|
     t.date "from_date"
@@ -26,4 +35,5 @@ ActiveRecord::Schema.define(version: 20170618190045) do
     t.index ["token"], name: "index_searches_on_token", unique: true
   end
 
+  add_foreign_key "results", "searches"
 end
