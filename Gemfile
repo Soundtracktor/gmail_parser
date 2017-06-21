@@ -22,16 +22,16 @@ gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'watir'
+gem 'capybara', '~> 2.13'
+gem 'selenium-webdriver'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '~> 2.13'
   gem 'chromedriver-helper'
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'selenium-webdriver'
 end
 
 group :development do
